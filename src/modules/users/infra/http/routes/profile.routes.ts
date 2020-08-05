@@ -2,23 +2,21 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import uploadConfig from '@config/upload';
-import UsersController from '@modules/users/infra/http/controllers/UsersController';
-import UserAvatarController from '@modules/users/infra/http/controllers/UserAvatarController';
+import ProfileController from '@modules/users/infra/http/controllers/ProfileController';
+import ProfileAvatarController from '@modules/users/infra/http/controllers/ProfileAvatarController';
 
-const usersRouter = Router();
-const usersController = new UsersController();
-const userAvatarController = new UserAvatarController();
+const profileRouter = Router();
+const profileController = new ProfileController();
+const profileAvatarController = new ProfileAvatarController();
 const upload = multer(uploadConfig);
 
-usersRouter.post('/', usersController.create);
-usersRouter.get('/', usersController.read);
-usersRouter.put('/:id', usersController.update);
-usersRouter.delete('/:id', usersController.delete);
-
-usersRouter.patch(
+profileRouter.get('/', profileController.show);
+profileRouter.put('/', profileController.update);
+profileRouter.patch(
   '/avatar',
   upload.single('avatar'),
-  userAvatarController.update,
+  profileAvatarController.update,
 );
+profileRouter.delete('/avatar', profileAvatarController.delete);
 
-export default usersRouter;
+export default profileRouter;

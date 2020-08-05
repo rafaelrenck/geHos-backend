@@ -18,7 +18,7 @@ export default class User {
   password: string;
 
   @Column()
-  tmp_password: boolean;
+  password_is_temporary: boolean;
 
   @Column()
   name: string;
@@ -41,8 +41,8 @@ export default class User {
   @Column()
   board_id: number;
 
-  @Column()
-  avatar: string;
+  @Column('varchar', { nullable: true })
+  avatar: string | null = null;
 
   @Column()
   active: boolean;

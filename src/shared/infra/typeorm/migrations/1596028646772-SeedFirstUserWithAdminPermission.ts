@@ -7,7 +7,7 @@ export default class SeedFirstUserWithAdminPermission1596028646772
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const user = {
-      username: 'rafael.rs',
+      username: 'rafael.renck',
       password: `${await hash('1234', 8)}`,
       name: 'Rafael Renck da Silva',
       email: 'rafael@hsvosorio.com.br',

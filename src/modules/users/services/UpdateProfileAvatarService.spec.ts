@@ -1,18 +1,18 @@
 import AppError from '@shared/errors/AppError';
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
-import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
+import UpdateProfileAvatarService from '@modules/users/services/UpdateProfileAvatarService';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeStorageProvider: FakeStorageProvider;
-let updateUserAvatar: UpdateUserAvatarService;
+let updateProfileAvatar: UpdateProfileAvatarService;
 
 describe('UpdateUserAvatar', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeStorageProvider = new FakeStorageProvider();
 
-    updateUserAvatar = new UpdateUserAvatarService(
+    updateProfileAvatar = new UpdateProfileAvatarService(
       fakeUsersRepository,
       fakeStorageProvider,
     );
@@ -30,7 +30,7 @@ describe('UpdateUserAvatar', () => {
       board_id: 9999,
     });
 
-    await updateUserAvatar.execute({
+    await updateProfileAvatar.execute({
       user_id: user.id,
       avatarFilename: 'avatar.jpg',
     });
@@ -40,7 +40,7 @@ describe('UpdateUserAvatar', () => {
 
   it('should not be able to update avatar from non existing user', async () => {
     await expect(
-      updateUserAvatar.execute({
+      updateProfileAvatar.execute({
         user_id: 'non-existing-user',
         avatarFilename: 'avatar.jpg',
       }),
@@ -61,12 +61,12 @@ describe('UpdateUserAvatar', () => {
       board_id: 9999,
     });
 
-    await updateUserAvatar.execute({
+    await updateProfileAvatar.execute({
       user_id: user.id,
       avatarFilename: 'avatar.jpg',
     });
 
-    await updateUserAvatar.execute({
+    await updateProfileAvatar.execute({
       user_id: user.id,
       avatarFilename: 'avatar2.jpg',
     });

@@ -7,6 +7,10 @@ import User from '@modules/users/infra/typeorm/entities/User';
 class FakeUsersRepository implements IUserRepository {
   private users: User[] = [];
 
+  public async findAll(): Promise<User[]> {
+    return this.users;
+  }
+
   public async findById(id: string): Promise<User | undefined> {
     const user = this.users.find(iUser => iUser.id === id);
     return user;

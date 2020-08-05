@@ -23,7 +23,7 @@ export default class CreateUsers1595362682268 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'tmp_password',
+            name: 'password_is_temporary',
             type: 'boolean',
             default: true,
           },

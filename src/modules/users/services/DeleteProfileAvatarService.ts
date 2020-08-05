@@ -7,11 +7,10 @@ import User from '@modules/users/infra/typeorm/entities/User';
 
 interface IRequest {
   user_id: string;
-  avatarFilename: string;
 }
 
 @injectable()
-class UpdateUserAvatarService {
+class DeleteProfileAvatarService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUserRepository,
@@ -20,12 +19,12 @@ class UpdateUserAvatarService {
     private storageProvider: IStorageProvider,
   ) {}
 
-  public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
+  public async execute({ user_id }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError(
-        'Você precisa estar logado para atualizar sua foto',
+        'Você precisa estar logado para excluir sua foto',
         401,
       );
     }
@@ -34,9 +33,7 @@ class UpdateUserAvatarService {
       await this.storageProvider.deleteFile(user.avatar);
     }
 
-    const fileName = await this.storageProvider.saveFile(avatarFilename);
-
-    user.avatar = fileName;
+    user.avatar = null;
 
     await this.usersRepository.save(user);
 
@@ -44,4 +41,4 @@ class UpdateUserAvatarService {
   }
 }
 
-export default UpdateUserAvatarService;
+export default DeleteProfileAvatarService;
