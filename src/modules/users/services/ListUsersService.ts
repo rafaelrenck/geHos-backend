@@ -1,18 +1,14 @@
 import { injectable, inject } from 'tsyringe';
 
-import IUserRepository from '@modules/users/repositories/IUsersRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '@modules/users/infra/typeorm/entities/User';
-
-interface IRequest {
-  user_id: string;
-}
 
 @injectable()
 class ListUsersService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUserRepository,
+    private usersRepository: IUsersRepository,
   ) {}
 
   public async execute(): Promise<User[]> {

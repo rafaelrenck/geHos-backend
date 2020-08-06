@@ -19,9 +19,9 @@ export default class UsersController {
       board_id,
     } = request.body;
 
-    const createUser = container.resolve(CreateUserService);
+    const userToCreate = container.resolve(CreateUserService);
 
-    const user = await createUser.execute({
+    const userCreated = await userToCreate.execute({
       username,
       password,
       name,
@@ -32,9 +32,9 @@ export default class UsersController {
       board_id,
     });
 
-    delete user.password;
+    delete userCreated.password;
 
-    return response.json(user);
+    return response.json(userCreated);
   }
 
   public async list(request: Request, response: Response): Promise<Response> {
@@ -63,9 +63,9 @@ export default class UsersController {
       board_id,
     } = request.body;
 
-    const updateUser = container.resolve(UpdateUserService);
+    const userToUpdate = container.resolve(UpdateUserService);
 
-    const user = await updateUser.execute({
+    const userUpdated = await userToUpdate.execute({
       user_id,
       username,
       password,
@@ -77,10 +77,10 @@ export default class UsersController {
       board_id,
     });
 
-    delete user.password;
-    delete user.password_is_temporary;
+    delete userUpdated.password;
+    delete userUpdated.password_is_temporary;
 
-    return response.json(user);
+    return response.json(userUpdated);
   }
 
   public async inactivate(
@@ -89,15 +89,15 @@ export default class UsersController {
   ): Promise<Response> {
     const user_id = request.params.id;
 
-    const deleteUser = container.resolve(DeleteUserService);
+    const userToInactivate = container.resolve(DeleteUserService);
 
-    const user = await deleteUser.execute({
+    const userInactivated = await userToInactivate.execute({
       user_id,
     });
 
-    delete user.password;
-    delete user.password_is_temporary;
+    delete userInactivated.password;
+    delete userInactivated.password_is_temporary;
 
-    return response.json(user);
+    return response.json(userInactivated);
   }
 }
