@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import IGroupsRepository from '@modules/users/repositories/IGroupsRepository';
-import ICreateGroupDTO from '@modules/users/dtos/ICreateGroupDTO';
+import IGroupDTO from '@modules/users/dtos/IGroupDTO';
 import Group from '@modules/users/infra/typeorm/entities/Group';
 
 class GroupsRepository implements IGroupsRepository {
@@ -31,7 +31,7 @@ class GroupsRepository implements IGroupsRepository {
     return findGroup;
   }
 
-  public async create(groupData: ICreateGroupDTO): Promise<Group> {
+  public async create(groupData: IGroupDTO): Promise<Group> {
     const group = this.ormRepository.create(groupData);
 
     await this.ormRepository.save(group);

@@ -1,4 +1,4 @@
-export default interface ICreatePermissionDTO {
+export default interface IPermissionDTO {
   permission: string;
   description?: string;
 }

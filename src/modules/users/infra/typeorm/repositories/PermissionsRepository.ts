@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import IPermissionsRepository from '@modules/users/repositories/IPermissionsRepository';
-import ICreatePermissionDTO from '@modules/users/dtos/ICreatePermissionDTO';
+import IPermissionDTO from '@modules/users/dtos/IPermissionDTO';
 import Permission from '@modules/users/infra/typeorm/entities/Permission';
 
 class PermissionsRepository implements IPermissionsRepository {
@@ -33,9 +33,7 @@ class PermissionsRepository implements IPermissionsRepository {
     return findPermission;
   }
 
-  public async create(
-    permissionData: ICreatePermissionDTO,
-  ): Promise<Permission> {
+  public async create(permissionData: IPermissionDTO): Promise<Permission> {
     const permission = this.ormRepository.create(permissionData);
 
     return this.ormRepository.save(permission);

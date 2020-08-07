@@ -1,4 +1,4 @@
-export default interface ICreateGroupDTO {
+export default interface IGroupDTO {
   group: string;
   description?: string;
 }
