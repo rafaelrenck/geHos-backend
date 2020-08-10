@@ -20,12 +20,6 @@ export default class SeedFirstUserWithAdminPermission1596028646772
       description: 'Administradores',
     };
 
-    const permission = {
-      permission: 'CRUD Usuários',
-      description:
-        'Permite criar, ler, atualizar e excluir usuários do sistema',
-    };
-
     const newUser = await queryRunner.manager
       .createQueryBuilder()
       .insert()
@@ -40,26 +34,6 @@ export default class SeedFirstUserWithAdminPermission1596028646772
       .into('groups')
       .values(group)
       .returning('id')
-      .execute();
-
-    const newPermission = await queryRunner.manager
-      .createQueryBuilder()
-      .insert()
-      .into('permissions')
-      .values(permission)
-      .returning('id')
-      .execute();
-
-    const groupPermission = {
-      group_id: `${newGroup.identifiers[0].id}`,
-      permission_id: `${newPermission.identifiers[0].id}`,
-    };
-
-    await queryRunner.manager
-      .createQueryBuilder()
-      .insert()
-      .into('group_permissions')
-      .values(groupPermission)
       .execute();
 
     const userGroup = {
