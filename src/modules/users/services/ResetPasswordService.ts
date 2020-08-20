@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 import path from 'path';
 
 import AppError from '@shared/errors/AppError';
@@ -14,7 +14,7 @@ interface IRequest {
 }
 
 @injectable()
-class ForgotPasswordService {
+class ResetPasswordService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -37,18 +37,18 @@ class ForgotPasswordService {
       throw new AppError('E-mail informado não percence ao usuário');
     }
 
-    const newTemporaryPassword = uuid().substring(0, 6);
+    const newTemporaryPassword = v4().substring(0, 6);
 
     findUser.password = await this.hashProvider.generateHash(
       newTemporaryPassword,
     );
     findUser.password_is_temporary = true;
 
-    const forgotPasswordTemplate = path.resolve(
+    const resetPasswordTemplate = path.resolve(
       __dirname,
       '..',
       'views',
-      'forgot_password.hbs',
+      'reset_password.hbs',
     );
 
     await this.mailProvider.sendMail({
@@ -58,7 +58,7 @@ class ForgotPasswordService {
       },
       subject: '[geHos] Recuperação de senha',
       templateData: {
-        file: forgotPasswordTemplate,
+        file: resetPasswordTemplate,
         variables: {
           name: findUser.name,
           newPassword: newTemporaryPassword,
@@ -70,4 +70,4 @@ class ForgotPasswordService {
   }
 }
 
-export default ForgotPasswordService;
+export default ResetPasswordService;

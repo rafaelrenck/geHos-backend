@@ -17,7 +17,7 @@ export default class SeedFirstUserWithAdminPermission1596028646772
 
     const group = {
       group: 'Admin',
-      description: 'Administradores',
+      description: 'Administradores do sistema',
     };
 
     const newUser = await queryRunner.manager

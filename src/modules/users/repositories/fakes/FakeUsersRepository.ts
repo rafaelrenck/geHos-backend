@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+import { v4 } from 'uuid';
 
 import IUserRepository from '@modules/users/repositories/IUsersRepository';
 import IUserDTO from '@modules/users/dtos/IUserDTO';
@@ -24,7 +24,7 @@ class FakeUsersRepository implements IUserRepository {
   public async create(userData: IUserDTO): Promise<User> {
     const user = new User();
 
-    Object.assign(user, { id: uuid() }, userData);
+    Object.assign(user, { id: v4() }, userData);
 
     this.users.push(user);
 

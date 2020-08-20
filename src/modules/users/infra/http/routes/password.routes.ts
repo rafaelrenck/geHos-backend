@@ -1,15 +1,15 @@
 import { Router } from 'express';
 
-import ForgotPasswordController from '@modules/users/infra/http/controllers/ForgotPasswordController';
+import ResetPasswordController from '@modules/users/infra/http/controllers/ResetPasswordController';
 import ForceUpdatePasswordController from '@modules/users/infra/http/controllers/ForceUpdatePasswordController';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const passwordRouter = Router();
-const forgotPasswordController = new ForgotPasswordController();
+const resetPasswordController = new ResetPasswordController();
 const forceUpdatePasswordController = new ForceUpdatePasswordController();
 
-passwordRouter.post('/forgot', forgotPasswordController.create);
+passwordRouter.post('/reset', resetPasswordController.create);
 passwordRouter.post(
   '/update',
   ensureAuthenticated,
