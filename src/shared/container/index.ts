@@ -9,6 +9,8 @@ import IGroupsRepository from '@modules/users/repositories/IGroupsRepository';
 import GroupsRepository from '@modules/users/infra/typeorm/repositories/GroupsRepository';
 import IUserGroupsRepository from '@modules/users/repositories/IUserGroupsRepository';
 import UserGroupsRepository from '@modules/users/infra/typeorm/repositories/UserGroupsRepository';
+import IInsurancesRepository from '@modules/insurances/repositories/IInsurancesRepository';
+import InsurancesRepository from '@modules/insurances/infra/typeorm/repositories/InsurancesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -23,4 +25,9 @@ container.registerSingleton<IGroupsRepository>(
 container.registerSingleton<IUserGroupsRepository>(
   'UserGroupsRepository',
   UserGroupsRepository,
+);
+
+container.registerSingleton<IInsurancesRepository>(
+  'InsurancesRepository',
+  InsurancesRepository,
 );

@@ -16,6 +16,7 @@ export default class CreatePatients1597157115953 implements MigrationInterface {
           {
             name: 'code',
             type: 'int',
+            isUnique: true,
             isGenerated: true,
             generationStrategy: 'increment',
           },

@@ -6,6 +6,7 @@ import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 import groupsRouter from '@modules/users/infra/http/routes/groups.routes';
 import userGroupsRouter from '@modules/users/infra/http/routes/usergroups.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
+import insurancesRouter from '@modules/insurances/infra/http/routes/insurances.routes';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const routes = Router();
@@ -19,5 +20,6 @@ routes.use('/users', usersRouter);
 routes.use('/profile', profileRouter);
 routes.use('/groups', groupsRouter);
 routes.use('/usersgroups', userGroupsRouter);
+routes.use('/insurances', insurancesRouter);
 
 export default routes;

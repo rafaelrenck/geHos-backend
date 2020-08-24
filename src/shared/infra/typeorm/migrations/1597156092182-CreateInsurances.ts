@@ -17,6 +17,7 @@ export default class CreateInsurances1597156092182
           {
             name: 'code',
             type: 'int',
+            isUnique: true,
             isGenerated: true,
             generationStrategy: 'increment',
           },

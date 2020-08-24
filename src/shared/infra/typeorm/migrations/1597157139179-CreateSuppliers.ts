@@ -17,6 +17,7 @@ export default class CreateSuppliers1597157139179
           {
             name: 'code',
             type: 'int',
+            isUnique: true,
             isGenerated: true,
             generationStrategy: 'increment',
           },

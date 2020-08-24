@@ -30,7 +30,7 @@ class UpdateGroupService {
 
     const groupExists = await this.groupsRepository.findByGroup(group);
 
-    if (groupExists) {
+    if (groupExists && groupExists.id !== group_id) {
       throw new AppError('Já existe um grupo cadastrado com este nome');
     }
 
