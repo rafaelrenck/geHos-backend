@@ -29,7 +29,6 @@ export default class CreateSuppliers1597157139179
           {
             name: 'fake_name',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'cnpj',

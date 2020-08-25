@@ -23,7 +23,6 @@ export default class CreatePatients1597157115953 implements MigrationInterface {
           {
             name: 'patient',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'gender',

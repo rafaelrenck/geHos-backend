@@ -6,7 +6,7 @@ import ListInsurancesService from '@modules/insurances/services/ListInsurancesSe
 import UpdateInsuranceService from '@modules/insurances/services/UpdateInsuranceService';
 import DeleteInsuranceService from '@modules/insurances/services/DeleteInsuranceService';
 
-export default class InsuranceController {
+export default class InsurancesController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { insurance, cnpj } = request.body;
 
@@ -43,7 +43,10 @@ export default class InsuranceController {
     return response.json(insuranceUpdated);
   }
 
-  public async delete(request: Request, response: Response): Promise<Response> {
+  public async inactivate(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
     const insurance_id = request.params.id;
 
     const insuranceToDelete = container.resolve(DeleteInsuranceService);

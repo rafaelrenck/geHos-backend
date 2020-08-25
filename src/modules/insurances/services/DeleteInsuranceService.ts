@@ -22,7 +22,9 @@ class DeleteInsuranceService {
       throw new AppError('Convênio não encontrado');
     }
 
-    return this.insurancesRepository.delete(insurance);
+    insurance.active = false;
+
+    return this.insurancesRepository.save(insurance);
   }
 }
 

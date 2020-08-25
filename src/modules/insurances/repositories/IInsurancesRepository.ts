@@ -7,5 +7,4 @@ export default interface IInsurancesRepository {
   findByInsurance(insurance: string): Promise<Insurance | undefined>;
   create(data: IInsuranceDTO): Promise<Insurance>;
   save(insurance: Insurance): Promise<Insurance>;
-  delete(insurance: Insurance): Promise<Insurance>;
 }

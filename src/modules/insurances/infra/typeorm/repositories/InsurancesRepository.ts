@@ -44,10 +44,6 @@ class InsurancesRepository implements IInsurancesRepository {
   public async save(insurance: Insurance): Promise<Insurance> {
     return this.ormRepository.save(insurance);
   }
-
-  public async delete(insurance: Insurance): Promise<Insurance> {
-    return this.ormRepository.remove(insurance);
-  }
 }
 
 export default InsurancesRepository;

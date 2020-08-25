@@ -8,6 +8,6 @@ const insurancesController = new InsurancesController();
 insurancesRouter.post('/', insurancesController.create);
 insurancesRouter.get('/', insurancesController.list);
 insurancesRouter.put('/:id', insurancesController.update);
-insurancesRouter.delete('/:id', insurancesController.delete);
+insurancesRouter.delete('/:id', insurancesController.inactivate);
 
 export default insurancesRouter;
