@@ -10,12 +10,12 @@ export default class ForceUpdatePasswordController {
 
     const forceUpdatePassword = container.resolve(ForceUpdatePasswordService);
 
-    await forceUpdatePassword.execute({
+    const user = await forceUpdatePassword.execute({
       user_id,
       password,
       email,
     });
 
-    return response.status(204).json();
+    return response.json(user);
   }
 }
